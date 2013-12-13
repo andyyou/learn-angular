@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/semantic.min.css">
+        <style>
+        body{
+          padding-top: 60px;
+        }
+        </style>
+        <script src="js/modernizr.min.js"></script>
+        <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>-->
+        <script src="js/angular.min.js"></script>        
+    </head>
+    <body ng-app>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        
+
+        <div class="ui grid">
+          <div class="four wide column">
+            <div class="ui segment"></div>
+          </div>
+          <div class="four wide column">
+            <div class="ui segment"></div>
+          </div>
+          <div class="four wide column">
+            <div class="ui segment"></div>
+          </div>
+          <div class="four wide column">
+            <div class="ui segment"></div>
+          </div>
+        </div>
+
+        <div class="ui one column page grid" ng-controller='Ctrl'>
+          <div class="column">
+            <div class="ui segment">
+              <select ng-model='pg' ng-options='tag.name for tag in tags'>
+                <option value=''>Please Select</option>
+              </select>
+              <p ng-show='pg.id > 0'>{{pg.name}} is {{pg.type}}</p>
+              <div>單純陣列 label for value in array</div>
+              <select ng-model='user' ng-options='item for item in users'>
+              </select>
+
+              <div>自訂標簽 label for value in array</div>
+              <select ng-model='p0' ng-options='(item.id + "." + item.productName) for item in products'>
+              </select>
+              <div>物件陣列</div>
+              <select ng-model='p1' ng-options='item.productName for item in products'>
+              </select>
+              <div>物件陣列設定預設值 如果 ng-model 找不到對應的 ng-options 則會產生空白 option</div>
+              <select ng-model='product' ng-options='item.id as item.productName for item in products' ng-change='debug()'>
+              </select>
+              <div>群組下拉式選單</div>
+              <select ng-model='p2' ng-options='item.productColor + ". " + item.productName group by item.id for item in products'>
+              </select>
+              <div>指定 select  -> select as label for value in array</div>
+              <select id='p3' ng-model='p3' ng-options='item.id as item.productName for item in products' ng-change='p3f()'>
+              </select>
+            </div><!--/ui segment-->
+
+
+          </div>
+        </div>
+
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+        <script src="js/jquery.min.js"></script>
+        <script>
+        window.Ctrl = function($scope){
+          $scope.users = ['Andy', 'Calvert', 'Ken']
+          $scope.tags = [
+            { id: 1, name: 'Javascript', type: 'dynamic'}, 
+            { id: 2, name: 'Ruby', type: 'dynamic'}, 
+            { id: 3, name: 'Python', type: 'dynamic'}, 
+            { id: 4, name: 'C#', type: 'static'}, 
+            { id: 5, name: 'Java', type: 'static'}, 
+            { id: 6, name: 'C++', type: 'static'}, 
+            { id: 7, name: 'CoffeeScript', type: 'dynamic'}
+            ];
+          $scope.products = [
+            {id: 10001, category: '男', productName: '水洗T恤', productColor: '白'},
+            {id: 10002, category: '女', productName: '圓領短袖', productColor: '黑'},
+            {id: 10002, category: '女', productName: '圓領短袖', productColor: '黃'},
+            {id: 10003, category: '女', productName: '圓領長袖', productColor: '藍'}
+          ];
+          // console.log($scope.Model[0].productName);
+
+          $scope.product = $scope.products[0].id;
+          $scope.debug = function () {
+            console.log(typeof($scope.product));
+            console.log($scope.product);
+          }
+          $scope.p3f = function () {
+            console.log($scope.p3)
+          }
+        }
+
+        $(function(){
+          $('#p3').on('change', function() {
+            console.log($(this).val());
+          })
+        })
+        </script>
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+    </body>
+</html>
