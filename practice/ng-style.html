@@ -50,13 +50,14 @@
           <div class="column">
             <div class="ui segment">
               <p ng-style='setColor()'>Cool</p>
-
+              <p ng-style='{color: "green"}'>Good</p>
             </div>
           </div>
         </div>
         <script>
         var app = angular.module('app', []);
         app.controller('Ctrl', function ($scope) {
+          $scope.css = {color: 'red'}
           $scope.setColor = function () {
             return { color: 'blue'}
           }

@@ -47,14 +47,35 @@
           </div>
         </div>
 
-        <div class="ui one column page grid">
+        <div class="ui one column page grid" ng-controller='HomeController'>
           <div class="column">
-            <div class="ui segment"></div>
+            <div class="ui segment">
+              <div class="ui input">
+                <input type='text' ng-model='count'>
+                <div class="ui label">{{count}}</div>
+                <button ng-click='increment()'>Increment</button>
+                <button ng-click='cancelWatch()'>Cancel Watch</button>
+              </div>
+            </div>
           </div>
           
         </div>
         <script>
-        
+        var app = angular.module('app', [])
+                  .controller('HomeController', function ($scope) {
+                    $scope.count = 0;
+                    $scope.increment = function () {
+                      $scope.count++;
+                    }
+                    $scope.cancelWatch = function () {
+                      cancel();
+                    }
+                    var cancel = $scope.$watch('count', function (newValue, oldValue) {
+                      console.log($scope.count);
+                    });
+
+
+                  })
         </script>
         <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
         <!-- // <script src="js/jquery.min.js"></script> -->

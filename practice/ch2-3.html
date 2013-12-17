@@ -23,7 +23,10 @@
         <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>-->
         <!-- // <script src="js/angular.min.js"></script>        -->
         <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js'></script> 
-        <script src="http://jashkenas.github.com/coffee-script/extras/coffee-script.js"></script>
+        <script src='js/ch2-3.js'></script>
+        <!--<script src="http://jashkenas.github.com/coffee-script/extras/coffee-script.js"></script>
+        <script type="text/coffeescript">
+        </script>-->
     </head>
     <body ng-app='app'>
         <!--[if lt IE 7]>
@@ -47,15 +50,17 @@
           </div>
         </div>
 
-        <div class="ui one column page grid">
+        <div class="ui one column page grid" ng-controller='HomeController'>
           <div class="column">
-            <div class="ui segment"></div>
+            <div class="ui segment">{{name}}</div>
+            <ul ng-repeat='item in playList'>
+              <li>{{$middle}}</li>
+            </ul>
+            <button ng-click='go()'>Go</button>
           </div>
           
         </div>
-        <script>
         
-        </script>
         <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
         <!-- // <script src="js/jquery.min.js"></script> -->
         

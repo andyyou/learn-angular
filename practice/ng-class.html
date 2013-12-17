@@ -28,6 +28,8 @@
           transition: .8s;
           overflow: hidden;
         }
+        .error{color: red; font-size: 36px;}
+        .warning{color: orange; font-size: 36px;}
 
         .anim.hidden {
           max-height: 0;
@@ -78,7 +80,7 @@
               
               <div class="anim" ng-class='{"hidden":!showCss}'>Show some information</div>
               
-              
+              <div ng-class='{error:true, warning: false}'>Error & Warning</div>
             </div>
           </div>
         </div>

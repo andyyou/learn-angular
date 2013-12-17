@@ -18,6 +18,7 @@
         body{
           padding-top: 60px;
         }
+        .highlight{color: yellow;}
         </style>
         <script src="js/modernizr.min.js"></script>
         <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>-->
@@ -47,14 +48,50 @@
           </div>
         </div>
 
-        <div class="ui one column page grid">
+        <div class="ui one column page grid" ng-controller='HomeController'>
           <div class="column">
-            <div class="ui segment"></div>
+            <div class="ui segment">
+              <ul ng-repeat='item in directory'>
+                <li ng-class='{highlight:$index==selectedRow}' ng-click='selectedRestaurant($index)'>{{item.name}}</li>
+              </ul>
+              <button ng-click='action()'>{{counter}}</button>
+              <div ng-click='changeName()'>{{user.name}} {{update}}</div>
+            </div>
           </div>
           
         </div>
         <script>
-        
+        var app = angular.module('app', []);
+        app.controller('HomeController', function ($scope) {
+          $scope.counter = 0;
+          $scope.update = 0;
+          $scope.user = {name: 'AndyYou'}
+          $scope.directory = [
+            {name: 'The handsome heifer', cuisine: 'BBQ'},
+            {name: 'Green\'s Green Greens', cuisine: 'Salads'},
+            {name: 'House of Fine fish', cuisine: "Seafood"}
+          ];
+          $scope.selectedRestaurant = function(row) {
+            $scope.selectedRow = row;
+          }
+          $scope.action = function () {
+            $scope.counter += 1;
+
+          }
+          $scope.changeName = function () {
+            $scope.user.name = 'Cool';
+          }
+          $scope.$watch('counter', function (newValue, oldValue) {
+            if (newValue === oldValue)
+              $scope.counter++;
+            console.log('change: ' + $scope.counter);
+          });
+          $scope.$watch('user', function (newValue, oldValue) {
+            if (newValue === oldValue) return;
+            $scope.update++;
+            console.log('name change' + $scope.update);
+          })
+        }); 
         </script>
         <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
         <!-- // <script src="js/jquery.min.js"></script> -->

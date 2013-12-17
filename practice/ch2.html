@@ -23,9 +23,8 @@
         <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>-->
         <!-- // <script src="js/angular.min.js"></script>        -->
         <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js'></script> 
-        <script src="http://jashkenas.github.com/coffee-script/extras/coffee-script.js"></script>
     </head>
-    <body ng-app='app'>
+    <body = ng-app='app'>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -47,18 +46,44 @@
           </div>
         </div>
 
-        <div class="ui one column page grid">
+        <div class="ui one column page grid" ng-controller='HomeController'>
           <div class="column">
-            <div class="ui segment"></div>
+            <div class="ui segment">
+              <div class="ui label">{{sometxt}}</div>
+            </div>
           </div>
           
         </div>
+
+        <div class="ui one column page grid" ng-controller='ToController'>
+          <div class="column">
+            <div class="ui segment">
+             <div class="ui label">{{txt}}</div> 
+            </div>
+          </div>
+        </div>
         <script>
-        
+        var app = angular.module('app', []);
+        app.controller('HomeController', function ($scope) {
+          var sometxt = 'Some information'
+        });
+
+        function ToController ($scope) {
+          $scope.txt = 'Second Controller';
+        } 
         </script>
+
         <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
         <!-- // <script src="js/jquery.min.js"></script> -->
         
-        
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
     </body>
 </html>

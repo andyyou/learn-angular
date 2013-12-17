@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="header" id='h'>I am header</div>
+    <div class="content">I am body</div>
+    <ul>
+      <li class='a'>1</li>
+      <li>2</li>
+      <li class='b'>3</li>
+      <li>4</li>
+      <li class='c'>5</li>
+    </ul>
+
+
+    <table>
+      <tr>
+        <td>
+          <div><span>Propagation</span></div> 
+        </td>
+      </tr>
+    </table>
+    <input type='text' value='Woo Ha'>
+    <input type='checkbox' checked>
+    <a href='javascript:()'>Yahoo</a>
+  </div>
+
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script>
+
+  $(function() {
+    $('table').click(function(){
+      alert('table');
+    });
+    $('td').click(function () {
+      alert('td');
+    });
+    $('div').click(function(){
+      alert('div');
+    });
+    $('span').click(function (e) {
+
+      alert('span');
+      return false;
+    });
+
+  })
+  </script>
+</body>
+</html>

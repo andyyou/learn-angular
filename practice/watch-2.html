@@ -47,14 +47,27 @@
           </div>
         </div>
 
-        <div class="ui one column page grid">
+        <div class="ui one column page grid" ng-controller='HomeController'>
           <div class="column">
-            <div class="ui segment"></div>
+            <div class="ui segment">
+              <input type="text" ng-model='counter'>
+              <div>{{getDoubleCounter()}}</div>
+            </div>
           </div>
           
         </div>
         <script>
-        
+        var app = angular.module('app', []);
+        app.controller('HomeController', function ($scope) {
+          $scope.counter = 0
+          $scope.getDoubleCounter = function () {
+            var d = $scope.counter * 2;
+            return d;
+          }
+          $scope.$watch("getDoubleCounter()", function () {
+            console.log($scope.counter);
+          })
+        })   
         </script>
         <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
         <!-- // <script src="js/jquery.min.js"></script> -->
