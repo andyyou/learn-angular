@@ -23,8 +23,7 @@
         <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>-->
         <!-- // <script src="js/angular.min.js"></script>        -->
         <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js'></script> 
-        <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular-route.min.js'></script> 
-        <!-- // <script src="http://jashkenas.github.com/coffee-script/extras/coffee-script.js"></script> -->
+        <script src="http://jashkenas.github.com/coffee-script/extras/coffee-script.js"></script>
     </head>
     <body ng-app='app'>
         <!--[if lt IE 7]>
@@ -35,61 +34,46 @@
 
         <div class="ui grid">
           <div class="four wide column">
-            <div class="ui segment">
-              <a href='#/'>Read:List</a>
-            </div>
+            <div class="ui segment"></div>
           </div>
           <div class="four wide column">
-            <div class="ui segment">
-               <a href='#create'>Create:OneRecord</a>
-            </div>
+            <div class="ui segment"></div>
           </div>
           <div class="four wide column">
-            <div class="ui segment">
-              <a href='#/show/1'>Read:OneRecord</a>
-            </div>
+            <div class="ui segment"></div>
           </div>
           <div class="four wide column">
-            <div class="ui segment">
-              <a href='#/update/1'>Update:OneRecord</a>
-            </div>
-          </div>
-          <div class="four wide column">
-            <div class="ui segment">
-              <a href='#/delete/1'>Delete:OneRecord</a>
-            </div>
+            <div class="ui segment"></div>
           </div>
         </div>
-        
-        <div class="ui one column page grid" ng-controller='HomeController'>
+
+        <div class="ui one column page grid">
           <div class="column">
-            <div class="ui segment" ng-view id='views'></div>
+            <div class="ui segment" ng-controller='HomeController'>
+              {{name | titleCase}}
+            </div>
           </div>
           
         </div>
         <script>
-        var app = angular.module('app', ['ngRoute'])
-                  .config(['$routeProvider', '$locationProvider',  function ($routeProvider, $locationProvider) {
-                    $routeProvider.when('/', {
-                      templateUrl:'template-index.html'
-                    })
-                    .when('/create', {
-                      templateUrl: 'template-create.html'
-                    })
-                    .when('/update', {
-                      templateUrl: 'template-update.html'
-                    })
-                    .when('/show/:id', {
-                      templateUrl: 'template-detail.html'
-                    })
-                    .when('/delete/:id', {
-                      templateUrl: 'template-delete.html'
-                    })
-                    .otherwise({redirectTo:'/'});
-                  }]);
+        
 
-        app.controller('HomeController', ['$scope', function MainCtrl($scope) {
-          $scope.name = 'Will';
+        
+        var app = angular.module('app', []);
+        app.filter('titleCase', function () {
+          var titleCaseFilter = function (input) {
+            var words = input.split(' ');
+            for (var i=0, len=words.length; i<len; i++) {
+              console.log(words[i]);
+              words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+            }
+
+            return words.join(' ');
+          };
+          return titleCaseFilter;
+        });
+        app.controller('HomeController', ['$scope', function ($scope) {
+          $scope.name = 'andy you';
         }]);
         </script>
         <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
